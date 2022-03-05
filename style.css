@@ -7,8 +7,11 @@
 
 body {
   width: 100%;
-  background: white;
+  background: #253047;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  
 }
 #menu {
   background-color: #111827;
