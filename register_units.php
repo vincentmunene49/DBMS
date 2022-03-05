@@ -1,3 +1,9 @@
+<?php
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,6 +21,9 @@
   <script>
     function validate() {
       window.location = 'index.html'
+      <?php
+      echo "vin";
+      ?>
       
     }
   </script>

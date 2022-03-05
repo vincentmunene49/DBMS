@@ -8,7 +8,7 @@ function connect($server, $user, $password, $db_name)
     );
 
 
-    $sql = "CREATE DATABASE IF NOT EXISTS maseno";
+    $sql = "CREATE DATABASE IF NOT EXISTS mas";
     $db->query($sql);
     if ($db->query($sql)) {
         $db = new mysqli(
@@ -20,10 +20,10 @@ function connect($server, $user, $password, $db_name)
     }
 
 
-    $sql1 = "CREATE TABLE IF NOT EXISTS student_details (ID int(11) AUTO_INCREMENT, 
+    $sql1 = "CREATE TABLE IF NOT EXISTS student_details (id int(11) AUTO_INCREMENT, 
     `Sname` varchar(255) NOT NULL,
     adm_number varchar(255) NOT NULL,
-    PRIMARY KEY  (ID))";
+    PRIMARY KEY  (id))";
 
     if ($db->query($sql1)) {
         // echo "created  successfully";
@@ -84,4 +84,20 @@ FOREIGN KEY (stage_id) REFERENCES stage(ID))";
 
 
     return $db;
+}
+
+function insert_into_student_and_stage(mysqli $db,$name,$adm_number,$year,$sem){
+    $sql0 = "INSERT INTO `student_details`( `Sname`, `adm_number`) VALUES ('$name','$adm_number')";
+    if($db-> query($sql0)){
+        $sql = "INSERT INTO stage (`year`,semester) VALUES ('$year','$sem')";
+        $db->query($sql);
+    }else{
+        echo "couldnot" . mysqli_error($db);
+    }
+   
+
+}
+
+function selectSemeterUnits(mysqli $db){
+
 }

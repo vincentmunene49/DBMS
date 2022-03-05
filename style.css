@@ -9,6 +9,10 @@ body {
   width: 100%;
   background: #253047;
   position: relative;
+ 
+
+}
+form{
   display: flex;
   flex-direction: row;
 

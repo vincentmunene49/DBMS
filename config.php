@@ -2,4 +2,4 @@
 define("DB_SERVER", "localhost");
 define("USER", "root");
 define("PASSWORD", "");
-define("DB_NAME", "maseno");
+define("DB_NAME", "mas");
