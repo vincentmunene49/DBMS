@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  border-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  width: 100%;
+  background: white;
+  position: relative;
+}
+#menu {
+  background-color: #111827;
+  width: 300px;
+  height: 100%;
+}
+#menu .logo {
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 30px 0 0 30px;
+}
+#menu .items {
+  margin-top: 40px;
+}
+#menu .items li {
+  list-style: none;
+  padding: 15px 0;
+}
+
+#menu .items li:hover {
+  background: #253047;
+  cursor: pointer;
+}
+#menu .items li i {
+  color: rgb(134, 141, 151);
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  margin: 0 10px 0 25px;
+}
+#menu .items li a {
+  text-decoration: none;
+  color: rgb(134, 141, 151);
+  font-weight: 300px;
+}
