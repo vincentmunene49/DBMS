@@ -85,7 +85,16 @@ FOREIGN KEY (stage_id) REFERENCES stage(ID))";
 
     return $db;
 }
+function selectUser(mysqli $db){
+    $data = [];
+    $sql = "SELECT USER FROM mysql.user";
+    $resultset = $db->query($sql);
 
+    while($row = $resultset->fetch_assoc()){
+        $data []=$row;
+    }
+    return $data;
+}
 function insert_into_student(mysqli $db,$name,$adm_number){
     $sql0 = "INSERT INTO `student_details`( `Sname`, `adm_number`) VALUES ('$name','$adm_number')";
     $db-> query($sql0);
