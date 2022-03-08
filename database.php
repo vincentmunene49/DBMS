@@ -86,18 +86,43 @@ FOREIGN KEY (stage_id) REFERENCES stage(ID))";
     return $db;
 }
 
-function insert_into_student_and_stage(mysqli $db,$name,$adm_number,$year,$sem){
+function insert_into_student(mysqli $db,$name,$adm_number){
     $sql0 = "INSERT INTO `student_details`( `Sname`, `adm_number`) VALUES ('$name','$adm_number')";
-    if($db-> query($sql0)){
-        $sql = "INSERT INTO stage (`year`,semester) VALUES ('$year','$sem')";
-        $db->query($sql);
-    }else{
-        echo "couldnot" . mysqli_error($db);
+    $db-> query($sql0);
+}
+function insert_into_student_course(mysqli $db,$student_id,$course_code){
+    $sql = "INSERT INTO student_course (student_id,unit_code) values ('$student_id','$course_code')";
+    $db -> query($sql);
+
+}
+//select student_id
+function select_studentId(mysqli $db,$adm_number){
+    $data = [];
+ $sql = "SELECT ID from student_details where adm_number = '$adm_number'";
+ $resultset = $db->query($sql);
+
+ while ($row = $resultset->fetch_assoc()) {
+     $data[] = $row;
+ }
+ return $data;
+}
+function insert_into_student_sem(mysqli $db,$student_id,$stage_id){
+    $sql = "INSERT INTO student_sem (student_id,stage_id) VALUES ('$student_id','$stage_id')";
+
+    $db->query($sql);
+
+}
+//select stage_id
+function select_stage_id(mysqli $db,$year,$sem){
+$data = [];
+    $sql = "SELECT ID from stage where `year` = '$year' and `semester` = '$sem'";
+    $resultset = $db->query($sql);
+
+    while ($row = $resultset->fetch_assoc()) {
+        $data[] = $row;
     }
-   
+    return $data;
+   }
 
-}
+ 
 
-function selectSemeterUnits(mysqli $db){
-
-}

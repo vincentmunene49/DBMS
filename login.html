@@ -8,6 +8,7 @@
     <title>LOGIN</title>
 </head>
 <body>
+  <form action="student.php" method="post">
     <section class="vh-100 gradient-custom">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -22,11 +23,11 @@
                     
       
                     <div class="form-outline form-white mb-4">
-                      <input type="password" id="typePasswordX" class="form-control form-control-lg" placeholder="Enter Admission Number" />
+                      <input type="text" id="typePasswordX" class="form-control form-control-lg" placeholder="Enter Admission Number" name="adm_num" />
                       
                     </div>
       
-                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                    <button class="btn btn-outline-light btn-lg px-5" type="submit" name="login">Login</button>
                 </div>     
                 </div>
               </div>
@@ -34,5 +35,6 @@
           </div>
         </div>
       </section>
+    </form>
 </body>
 </html>

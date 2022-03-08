@@ -24,11 +24,19 @@ form{
 .button{
   background: none;
   border: none;
+  
 }
+
 #menu {
   background-color: #111827;
   width: 300px;
   height: 100%;
+}
+#menu .items .button{
+  text-decoration: none;
+  color: rgb(134, 141, 151);
+  font-weight: 300px;
+
 }
 #menu .logo {
   display: flex;
