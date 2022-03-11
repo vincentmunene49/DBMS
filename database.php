@@ -97,7 +97,12 @@ function selectUser(mysqli $db){
 }
 function insert_into_student(mysqli $db,$name,$adm_number){
     $sql0 = "INSERT INTO `student_details`( `Sname`, `adm_number`) VALUES ('$name','$adm_number')";
-    $db-> query($sql0);
+   if( $db-> query($sql0)){
+
+
+   }else{
+       echo mysqli_error($db);
+   }
 }
 function insert_into_student_course(mysqli $db,$student_id,$course_code){
     $sql = "INSERT INTO student_course (student_id,unit_code) values ('$student_id','$course_code')";
@@ -133,5 +138,62 @@ $data = [];
     return $data;
    }
 
- 
+   function insertResult(mysqli $db,$code,$id,$cat,$main){
+       $sql = "INSERT INTO results(unit_code,student_id,cat,main) VALUES ('$code','$id','$cat','$main')";
+       if($db->query($sql)){
 
+       }else{
+           echo mysqli_error($db);
+       }
+
+   }
+ function createTrigger(mysqli $db){
+     $sql = "CREATE TRIGGER `find total` BEFORE INSERT ON `results` FOR EACH ROW SET New.total = New.cat + New.main";
+     if($db->query($sql)){
+         echo "created";
+     }
+ }
+//function update students
+
+function updateStudent(mysqli $db,$id,$name,$adm_number){
+    $sql = "UPDATE student_details SET Sname = '$name', adm_number = '$adm_number' where id = '$id' ";
+  if( $db->query($sql)) {
+
+  }else{
+      echo mysqli_error($db);
+  }
+}
+//update student_stage
+function updateStudentStage(mysqli $db,$id,$stage_id){
+    $sql = "UPDATE student_sem SET stage_id = '$stage_id' where student_id = '$id' ";
+   if($db->query($sql)){
+
+   }else{
+       echo mysqli_error($db);
+   }
+}
+
+function backup(mysqli $db, $table_name){
+    
+    $backup_file  = "E:/backups/student_details.sql";
+    $sql = "SELECT * INTO OUTFILE '$backup_file' FROM $table_name";
+    
+
+mysqli_select_db($db,'mas');
+$retval = mysqli_query(  $db,$sql );
+
+if(! $retval ) {
+   die('Could not take data backup:'.mysqli_error($db));
+}
+
+echo "Backedup  data successfully\n";
+
+mysqli_close($db);
+
+}
+//$table_name = "results";
+
+
+//UPDATE table_name
+//SET column1=value, column2=value2,...
+//WHERE some_column=some_value 

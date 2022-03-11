@@ -66,13 +66,35 @@ session_start();
        
 
         while ($row = $resultset->fetch_assoc()) {
-            echo $row['code']." ".$row['name']."<input type = 'submit' value = 'Delete'".'<br>' .'<br>';
+            echo $row['code']." ".$row['name']."".'<br>'.'<br>';
             
         }
 
       
     }elseif($_SESSION['admNo']!=null){
-  echo "deleted";
+    //  echo $_SESSION['admNo'];
+      $sql = "SELECT id from student_details where adm_number= '".$_SESSION['admNo']."'";
+      $resultset = $db -> query($sql);
+      
+      while($row = $resultset->fetch_assoc()){
+       $sql2 = "SELECT cat,main,total,unit_code from results join units on `code` = unit_code where student_id= '".$row['id']."'";
+       $resultset = $db -> query($sql2);
+       if(mysqli_num_rows($resultset)===0){
+         echo "results not inserted yet";
+
+       }else{
+        while($row = $resultset->fetch_assoc()){
+          echo 'unit:'." ".$row['unit_code'].'<br>'.'<br>';
+          echo "cat".$row['cat'].'<br>'.'<br>';
+          echo "main".$row['main'].'<br>'.'<br>';
+          echo "main".$row['total'].'<br>'.'<br>';
+          echo "<hr>";
+        }
+       }
+       
+
+      }
+ // echo "Your results have not been entered yet";
 
     }
        ?>

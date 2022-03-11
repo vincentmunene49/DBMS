@@ -43,14 +43,14 @@ $db = connect(DB_SERVER,USER,PASSWORD,DB_NAME);
 
         if(isset($reg_sem)){
 
-          if(!empty($_POST['radio'])) {
-            foreach($stage_id as $id){
-             // echo $id['ID'];
-             // var_dump($id);
-              $sql = "SELECT `code`,`name` FROM stage_course join units on `code` = `unit_code` where stage_id =". $id['ID'];
-             foreach($student_id as $std_id){
-              insert_into_student_sem($db,$std_id['ID'],$id['ID']);
-             }
+          if (!empty($_POST['radio'])) {
+            foreach ($stage_id as $id) {
+              // echo $id['ID'];
+              // var_dump($id);
+              $sql = "SELECT `code`,`name` FROM stage_course join units on `code` = `unit_code` where stage_id =" . $id['ID'];
+              foreach ($student_id as $std_id) {
+                insert_into_student_sem($db, $std_id['ID'], $id['ID']);
+              }
             }
             
            $resultset = $db->query($sql);
